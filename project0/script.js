@@ -50,14 +50,6 @@ function newTodo() {
   itemCountSpan.innerHTML = list.getElementsByTagName('li').length
 }
 
-// Count checked CHECKBOX
-function updateCheckedCount() {
-  var checkBox = document.getElementsByClassName(classnames.TODO_CHECKBOX)
-  checkBox.setAttribute('checked')
-  let uncheckedCount = document.querySelectorAll("input[name='todo']:checked").length
-  uncheckedCountSpan.innerHTML = uncheckedCount
-}
-
 var checkboxes = document.querySelectorAll('input[name="todo"]')
 for (let i = 0; i < checkboxes.length; i++){
   checkboxes[i].addEventListener("click", function() {
