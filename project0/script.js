@@ -19,10 +19,9 @@ function newTodo() {
   var checkBox = document.createElement('input')
   // Set type attribute
   checkBox.setAttribute('type', 'checkbox')
-  // Set class attribute
   checkBox.setAttribute('class', classNames.TODO_CHECKBOX)
-  // Set name attribute
   checkBox.setAttribute('name', 'todo')
+  checkBox.setAttribute('onclick', 'showChecked(this)')
 
   /**
   DELETE INPUT
@@ -33,7 +32,7 @@ function newTodo() {
   delBtn.setAttribute('class', classNames.TODO_DELETE)
   delBtn.setAttribute('value', 'Delete')
 
-  // Initialize li item
+  // Initialize li tag
   var li = document.createElement('li')
   li.className = classNames.TODO_ITEM
 
@@ -46,13 +45,19 @@ function newTodo() {
   // Add li item into list
   list.appendChild(li)
 
-  // Count the amount of li item
+  // Count the amount of li tag
   itemCountSpan.innerHTML = list.getElementsByTagName('li').length
+  // Init the amount of unchecked boxes
+  uncheckedCountSpan.innerHTML = list.getElementsByTagName('li').length
 }
 
-var checkboxes = document.querySelectorAll('input[name="todo"]')
-for (let i = 0; i < checkboxes.length; i++){
-  checkboxes[i].addEventListener("click", function() {
-    uncheckedCountSpan.innerHTML = document.querySelectorAll('input[name="todo"]:checked').length
-  })
+function showChecked(cbox){
+  if (cbox.checked){
+    //cbox.setAttribute("checked", "checked")
+    cbox.checked = true
+  } else {
+    //cbox.removeAttribute("checked")
+    cbox.checked = false
+  }
+  uncheckedCountSpan.innerHTML = list.getElementsByTagName('li').length - document.querySelectorAll('input[name="todo"]:checked').length
 }
