@@ -31,6 +31,7 @@ function newTodo() {
   delBtn.setAttribute('type', 'button')
   delBtn.setAttribute('class', classNames.TODO_DELETE)
   delBtn.setAttribute('value', 'Delete')
+  delBtn.setAttribute('onclick', 'delItem(this)')
 
   // Initialize li tag
   var li = document.createElement('li')
@@ -60,4 +61,10 @@ function showChecked(cbox){
     cbox.checked = false
   }
   uncheckedCountSpan.innerHTML = list.getElementsByTagName('li').length - document.querySelectorAll('input[name="todo"]:checked').length
+}
+
+function delItem(elm){
+  var li = elm.parentNode
+  var index = Array.from(list.children).indexOf(li)
+  list.removeChild(list.childNodes[index])
 }
